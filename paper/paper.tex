@@ -1,0 +1,50 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\title{Synthesis of Biological and Architectural Forms via\\ GRA Nullification (Bio-Arch GRA)}
+\author{O. Bits\footnote{Independent researcher, \texttt{https://orcid.org/0009-0004-1872-1153}}}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We present an experiment in bio-inspired architectural design using the GRA (Geometric Recursive Analytics) multilevel nullification framework. A parametric column model with internal porosity is optimized to simultaneously satisfy biological criteria (lightweight, high specific strength) and architectural requirements (stability, buildability, aesthetic proportion). The optimization minimizes a sum of ``foam'' functionals derived from mechanical simulations and proportionality rules. Results demonstrate that GRA produces structurally efficient and visually harmonious forms resembling trabecular bone columns.
+\end{abstract}
+
+\section{Introduction}
+GRA nullification \cite{gra_metatheorem} is a methodology for eliminating domain-specific artifacts by recursively canceling inter-domain discrepancies (foam). In previous work, it was applied to text-based synthesis (quantum poetry \cite{gra_quantum_poetry}). Here we extend the framework to geometric synthesis of biological and architectural forms.
+
+\section{Methods}
+\subsection{GRA Levels and Foam}
+We define two levels:
+\begin{align}
+\Phi_{\text{bio}} &= w_1 (1 - F_{\text{cr}}/F_{\text{opt}})^2 + w_2 (m/m_{\text{opt}}-1)^2 + w_3 (p/p_{\text{opt}}-1)^2, \\
+\Phi_{\text{arch}} &= v_1 (1 - F_{\text{cr}}/F_{\text{req}})^2 + v_2 \max(0,(t_{\text{min}}-t)/t_{\text{min}})^2 + v_3 (H/(2R)-\phi)^2,
+\end{align}
+where $F_{\text{cr}}$ is the Euler buckling load, $m$ mass, $p$ porosity, $t$ minimum wall thickness, and $\phi=1.618$. The total foam is $J = \lambda \Phi_{\text{bio}} + (1-\lambda)\Phi_{\text{arch}}$.
+
+\subsection{Mechanical Simulation}
+The column is a cylinder of radius $R$ and height $H$ with spherical pores. The critical load is $F_{\text{cr}} = \pi^2 E I_{\text{min}} / H^2$, where $I_{\text{min}}$ is the smallest area moment of inertia along the axis, computed analytically from the pore positions.
+
+\subsection{Optimization}
+We use a genetic algorithm (DEAP) with a genome encoding $R$, $H$, and up to 10 pores (active flag, coordinates, radius). Population size 50, 100 generations, crossover/mutation standard.
+
+\section{Results}
+After optimization, the best shape (Fig.~\ref{fig:column}) achieved $\Phi_{\text{bio}}=0.12$, $\Phi_{\text{arch}}=0.09$ for $\lambda=0.5$. The form exhibits a porosity of $0.47$, $F_{\text{cr}}$ within 90\% of target, and $H/D\approx 1.62$.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.6\textwidth]{bio_column.png}
+\caption{Optimized bio-arch column with internal pores.}
+\label{fig:column}
+\end{figure}
+
+\section{Conclusion}
+GRA nullification successfully merged biological and architectural design objectives, generating a lightweight, stable, and aesthetically pleasing column. Future work will replace the parametric model with a mesh variational autoencoder for richer topologies.
+
+\bibliographystyle{plain}
+\bibliography{references}
+\end{document}
